@@ -54,4 +54,11 @@ semodule_package -o my-fail2ban.pp -m my-fail2ban.mod
 semodule -i my-fail2ban.pp
 
 echo "Done!"
+
+#netdata
+echo "netdata..."
+chcon -R -t var_log_t /opt/netdata/var/log/netdata
+semanage fcontext -a -t var_log_t "/opt/netdata/var/log/netdata(/.*)?"
+echo "Done!"
+
 echo "All done!"

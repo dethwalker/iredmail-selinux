@@ -10,8 +10,10 @@ echo "Done!"
 echo "dovecot..."
 semanage port -a -t mail_port_t -p tcp 24242
 semanage port -a -t mail_port_t -p tcp 12340
-chcon -R -t mail_home_rw_t /var/vmail
-semanage fcontext --add --type mail_home_rw_t --range s0 '/var/vmail(/.*)?'
+semanage fcontext --add --type mail_home_rw_t --range s0 '/var/vmail/vmail1(/.*)?'
+semanage fcontext --add --type mail_home_rw_t --range s0 '/var/vmail/sieve(/.*)?'
+semanage fcontext --add --type mail_home_rw_t --range s0 '/var/vmail/public(/.*)?'
+restorecon -vR /var/vmail
 echo "Done!"
 
 #Nginx
